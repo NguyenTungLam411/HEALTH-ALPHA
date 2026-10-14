@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Alpha - Theo dõi sức khỏe</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <h1>💚 Health Alpha</h1>
+    <p>Chăm sóc sức khỏe mỗi ngày</p>
+  </header>
+
+  <main class="container">
+    <section class="welcome">
+      <h2>Xin chào! 👋</h2>
+      <p>Hãy theo dõi sức khỏe của bạn hôm nay.</p>
+    </section>
+
+    <section class="dashboard">
+      <div class="card heart">
+        <span>❤️ Nhịp tim</span>
+        <h2 id="heart">75 <small>bpm</small></h2>
+        <p>Dữ liệu mô phỏng</p>
+      </div>
+
+      <div class="card oxygen">
+        <span>🫁 Nồng độ SpO₂</span>
+        <h2 id="spo2">98 <small>%</small></h2>
+        <p>Dữ liệu mô phỏng</p>
+      </div>
+
+      <div class="card steps">
+        <span>👟 Số bước chân</span>
+        <h2 id="steps">3240</h2>
+        <button onclick="addSteps()">+500 bước</button>
+      </div>
+
+      <div class="card water">
+        <span>💧 Lượng nước</span>
+        <h2><span id="water">1000</span> <small>ml</small></h2>
+        <button onclick="addWater()">+250 ml nước</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>⚡ Ghi nhận nhanh</h2>
+      <button class="primary" onclick="addWater()">💧 Uống 250 ml nước</button>
+      <button class="primary" onclick="addSteps()">👟 Đi bộ 500 bước</button>
+      <button class="warning" onclick="testAlert()">⚠️ Thử cảnh báo</button>
+    </section>
+
+    <section id="alert" class="alert" role="alert">
+      <h2>⚠️ Cảnh báo sức khỏe</h2>
+      <p id="alertText">Chỉ số cần được kiểm tra.</p>
+      <p>Nếu có triệu chứng nghiêm trọng, hãy gọi cấp cứu 115 tại Việt Nam.</p>
+      <button onclick="closeAlert()">Đóng cảnh báo</button>
+    </section>
+
+    <section class="panel">
+      <h2>📋 Lịch sử hoạt động</h2>
+      <ul id="history">
+        <li>Bắt đầu theo dõi sức khỏe</li>
+      </ul>
+    </section>
+
+    <p class="note">
+      Đây là website minh họa phục vụ học tập.
+      Các chỉ số sức khỏe là dữ liệu mô phỏng, không dùng để chẩn đoán bệnh.
+    </p>
+  </main>
+
+  <footer>
+    © 2026 Health Alpha
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html>
+<body>
+  <h2>Supabase Connection Test</h2>
+
+  <button id="testBtn">Test Connection</button>
+  <p id="result">Ready to test.</p>
+  <button onclick="loadData()">Load Saved Data</button>
+  <pre id="result"></pre>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    // 1. Initialize Supabase FIRST
+    const db = window.supabase.createClient(
+      "https://htkjxyckhuvzpamhjtsg.supabase.co",
+      "sb_publishable_r5ooJabW_5sYe8Y7ChBSmA_JRdkQ7NV"
+    );
+
+    // 2. Define the test function
+    async function testConnection() {
+      const result = document.getElementById("result");
+      result.textContent = "Connecting...";
+
+      try {
+        const { data, error } = await db
+          .from("test_table")
+          .select("*")
+          .limit(1);
+
+        if (error) throw error;
+
+        result.textContent =
+          "Success! Connected to Supabase. Rows: " + data.length;
+      } catch (err) {
+        result.textContent = "Error: " + err.message;
+        console.error(err);
+      }
+    }
+
+    // 3. Attach the click handler AFTER initialization
+    document.getElementById("testBtn")
+      .addEventListener("click", testConnection);
+  </script>
+</body>
+</html>
+
