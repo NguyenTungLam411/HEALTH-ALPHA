@@ -22,3 +22,5 @@ insert into public.test_table (message)
 values ('01:25 - Đã uống thêm 250 ml nước');
 insert into public.test_table (message)
 values ('01:45 - Đã uống thêm 250 ml nước');
+
+SELECT * FROM test_table; 
