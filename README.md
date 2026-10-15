@@ -11,5 +11,6 @@ https://supabase.com/dashboard/project/htkjxyckhuvzpamhjtsg/sql/8a2f36a3-f3cf-48
 
 DATA CRAWLING : PYTHON
 
+https://colab.research.google.com/drive/1bRkPAffH6qqjZIe343M3u0B7ZZ6iCvNq?usp=sharing#scrollTo=-K1iXYTJXmmQ
 
 WHOLE WEBSITE DEPLOY ON CODECHEF : https://www.codechef.com/html-online-compiler
